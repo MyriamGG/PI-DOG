@@ -1,0 +1,11 @@
+export const DOGS = "OBT_DOGS";
+export const GET_DOG_DETAIL = "GET_DOG_DETAIL";
+export const CLEAN_DETAIL = "CLEAN_DETAIL";
+export const CLEAN_DOG = "CLEAN_DOG";
+export const CREATE_RAZA = "CREATE_RAZA";
+export const PUT_DOGS = "PUT_DOGS";
+export const TEMPERAMENTO = "TEMPERAMENTO";
+export const FILTER_DOGS_BY_OPTIONS = "FILTER_DOGS_BY_OPTIONS";
+export const FILTER_DOGS_BY_CREATION = "FILTER_DOGS_BY_CREATION";
+export const ORDENAR = "ORDENAR";
+export const DEL_DOG = "DEL_DOG";
