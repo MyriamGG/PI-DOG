@@ -36,6 +36,7 @@ async function buscoenApi(name, url) {
 async function objeto(raza, origen) {
   const imageID = raza.reference_image_id;
   const imageUrl = await Image.findByPk(imageID);
+  const imageUrlAlt = "https://cdn.pixabay.com/photo/2018/05/26/18/06/dog-3431913_640.jpg"
 
   const dogObj = {
     ID: origen === "DB" ? raza.ID : raza.id,
@@ -51,7 +52,7 @@ async function objeto(raza, origen) {
         : parseInt(raza.weight.metric.split("-")[1]),
     life_span: raza.life_span,
     image:
-      origen === "DB" ? raza.imagen : imageUrl ? imageUrl.image : "Sin imagen",
+      origen === "DB" ? raza.imagen : imageUrl ? imageUrl.image : imageUrlAlt,
     temperament:
       origen === "DB"
         ? raza.temperaments?.map((temp) => temp.name).join(", ")

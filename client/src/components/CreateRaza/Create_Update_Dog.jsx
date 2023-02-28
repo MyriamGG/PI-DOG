@@ -66,7 +66,6 @@ const Create_Update_Dog = (props) => {
 
     const ActiveButton = (event) => {
         event.preventDefault();//para prevenir o cambiar el evento del formulario
-        console.log(form)
         dispatch(crearDogs(form));
         alert ('Raza creada Satisfactoriamente! ✓')
         handleReset();
@@ -83,8 +82,7 @@ const Create_Update_Dog = (props) => {
 
     function valida(property, value){
         let mgeError = "Falta Dato";
-        console.log(property, value)
-
+  
         if (value.length === 0) setError({[property]: mgeError})
             else setError("");
         if (property === 'temp') value = value.split(',');
@@ -103,7 +101,7 @@ const Create_Update_Dog = (props) => {
             setError({[property]: mgeError});
         }
         if (property === "height_max") {
-            mgeError = validaMaxMin(parseInt(value,10), 0, 110,"altura");
+            mgeError = validaMaxMin(parseInt(value,10), max_min.height_min, 110,"altura");
             setError({[property]: mgeError});
         }
     
@@ -113,7 +111,7 @@ const Create_Update_Dog = (props) => {
         }
     
         if (property === "weight_max") {
-            mgeError = validaMaxMin(parseInt(value,10), 0, 65,"peso");
+            mgeError = validaMaxMin(parseInt(value,10), max_min.weight_min, 65,"peso");
             setError({[property]: mgeError});
         }
 
@@ -123,7 +121,7 @@ const Create_Update_Dog = (props) => {
         }
 
         if (property === "life_span_max") {
-            mgeError = validaMaxMin(parseInt(value,10), 0, 20,"vida");
+            mgeError = validaMaxMin(parseInt(value,10), max_min.life_span_min, 20,"vida");
             setError({[property]: mgeError});
         }
     }
@@ -131,42 +129,45 @@ const Create_Update_Dog = (props) => {
     function validaMaxMin(valor, min, max, caracteristica){
         let mgeError = "";
 
-        if (min !== 0 && valor < min) mgeError = `Coloque un valor igual o superior a ${min} de ${caracteristica}`
-  
+        if (max === 0 && valor < min) mgeError = `Coloque un valor igual o superior a ${min} de ${caracteristica}`
+        if (max !== 0 && valor <= min) mgeError = `Coloque un valor superior a ${min}`;
         if (max !== 0 && valor > max) mgeError = `Coloque un valor menor o igual a ${max} de ${caracteristica}`
         
         return mgeError;
     }
 
+    function concateno (min, max) {
+        return (min.toString()+"-"+max.toString())
+    }
+
     const changeHandler = (event) => {
         let property = event.target.name
         let value = event.target.value
-        console.log("property", property,"value", value)
         valida(property, value);
 
         setMax_min({
             ...max_min,
             [property]: value
         })
-        if (property === "height_min" || property === "height_max") {
-            property = "height";
-            value = max_min.height_min+"-"+max_min.height_min;
-        }
-        if (property === "weight_min" || property === "weight_max"){
-            property = "weight";
-            value = max_min.weight_min+"-"+max_min.weight_min;
-        }
-        if (property === "life_span_min" || property === "life_span_max"){
-            property = "life_span";
-            value = max_min.life_span_min+"-"+max_min.life_span_max;
-        }
 
+        if (property === "height_max") {
+            property = "height";
+            value = concateno(max_min.height_min, value);
+        }
+        if (property === "weight_max"){
+            property = "weight";
+            value = concateno(max_min.weight_min, value);
+        }
+        if (property === "life_span_max"){
+            property = "life_span";
+            value = concateno(max_min.life_span_min, value);
+        }
+ 
         setForm({
             ...form,
             [property]: value
         })
     }
-
 
     const tempChangeHandler = (event) => {
 
