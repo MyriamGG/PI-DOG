@@ -1,0 +1,33 @@
+.row {
+    display: inline-flex;
+    flex-flow: row;
+    padding: auto;
+  }
+  
+  .column {
+    float: left;
+    width: 33%;
+    padding-right: 5px;
+  }
+  
+  .card_btn {
+    color: rgb(7, 7, 7);
+    background-color: rgba(242, 211, 254, 0.726);
+    border: 1px rgb(46, 43, 236) solid;
+    box-shadow: inset 0 0 10px rgb(20, 220, 255), 0 0 10px rgb(20, 239, 255);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Finlandica";
+    margin: 10px;
+   
+    width: 17rem;
+    height: 30rem;
+  }
+  
+  .texto_dog{
+    color:#5878ca;
+    font-size: 1em;
+    font-family: fantasy;
+    margin-left: 50px;
+  }
+  

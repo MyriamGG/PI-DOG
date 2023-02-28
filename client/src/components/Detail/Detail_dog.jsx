@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import {Link , useParams, useHistory} from 'react-router-dom';
 import { getDogDetail,delDog ,cleanDetail} from "../../redux/actions/actions_dogs";
 import { useDispatch,useSelector } from "react-redux";
-
+import Create_Update_Dog from '../CreateRaza/Create_Update_Dog'
+import './Detail_dog.css'
 
 
 const Detail_dog = () => { 
@@ -57,7 +58,7 @@ const Detail_dog = () => {
                     <button onClick={handleDelete} hidden={id.length > 10? false : true}>Borrar Raza</button>
                 </div>    
                     <div>
-                       {/*  {!mostrarComponente && <Form ID={id}/>} */}
+                        {!mostrarComponente && <Create_Update_Dog ID={id}/>}
                     </div>
             </div>
         </>

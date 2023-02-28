@@ -1,0 +1,23 @@
+body {
+    background-image: url('/src/images/fondo.jpg');
+    margin-left: 10px;
+    margin-right: 10px;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+     min-height: 100vh;
+    max-height: 100vh; 
+    font-size: 1.2rem;
+   color: white; 
+  
+  }
+
+  .imagen_fondo {
+    background-image: url('/src/images/fondo.jpg');
+    height: 400px;
+    width: 400px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+  }

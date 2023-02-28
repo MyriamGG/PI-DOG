@@ -1,5 +1,5 @@
 body {
-  background-image: url('/src/images/fondo.jpg');
+  background-image: url('/src/images/dogImagen.png');
   margin-left: 10px;
   margin-right: 10px;
   background-size: contain; 
@@ -10,7 +10,10 @@ body {
   max-height: 100vh; 
   font-size: 1.2rem;
  color: white; 
+}
 
+.App {
+  text-align: center;
 }
 
 input{
@@ -24,110 +27,7 @@ select{
   background-color: #fff0f0;
 }
 
-.imagen_fondo {
-  height: 400px;
-  width: 400px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-}
-
-.fondo_color{
-  background-color: rgb(196, 225, 240);
-  background-image: url("../src/9948-azul-liso.jpg");
-}
-
-.fondo_form{
-  background-color: rgb(166, 170, 197);
-}
-
-.fondo_detail{
-  background-color:rgb(248, 237, 245);
-}
-
-.posicion_form{
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 5%;
-}
-
-.borde_form{
-  border: 5px solid #11151e;
-}
-
-.App {
-  text-align: center;
-}
-
-.titulo {
-  text-align: center;
-  color:rgb(228, 228, 55);
-  background-color: #6a890d;
-}
-
-.texto {
-  color:rgb(26, 3, 72);
-  font-size: 1.2em;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.texto_detail{
-  color:#5878ca;
-  font-size: 1.05em;
-  font-family: fantasy;
-  margin-left: 50px;
-}
-
-.texto_dog{
-  color:#5878ca;
-  font-size: 1em;
-  font-family: fantasy;
-  margin-left: 50px;
-}
-
-.margen_detail{
-  margin-left: 200px;
-  margin-right: 200px;
-  font-family: italic;
-  font-size: 1.05em;
-  color:#39044e;
-  border: #7e7d7d solid;
-}
-
-.imagen_detail{
-  width: 100px;
-  height: 100px;
-  margin-left: 30px;
-}
-
-.boton_detail{
-  color:rgb(55, 21, 123);
-  font-size: 0.5em;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.label {
-  color:lightcoral;
-  font-size: 1em;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden; 
-  padding: 8px;
-  border-radius: 60px 0px 60px 0px; 
-  -moz-border-radius: 60px 0px 60px 0px; 
-  -webkit-border-radius: 60px 0px 60px 0px; 
-  border: 2px solid #6d0808;
-  background: #e6e8e0;
-}
-
-.linkDog {
-  margin-left: 550px;
-  color:rgb(244, 209, 192);
-  background-color: #485f05;
-  width: 5em;
-  font-size: 2em;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
+/* 
 .boton_form{
   color:rgb(58, 39, 143);
   font-size: 1.5em;
@@ -148,58 +48,8 @@ select{
   border-radius: 35px 0px 35px 0px; 
   -moz-border-radius: 35px 0px 35px 0px; 
   -webkit-border-radius: 35px 0px 35px 0px; 
-  border: 2px solid #5878ca;}
+  border: 2px solid #5878ca;} */
   
-.cajita{ 
-  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
-  color: #ffffff; 
-  font-size: 12px; 
-  text-align: center; 
-  background: #889ccf; 
-  margin-left: 800px; 
-  overflow: hidden; 
-  padding: 10px; 
-  border-radius: 35px 0px 35px 0px; 
-  -moz-border-radius: 35px 0px 35px 0px; 
-  -webkit-border-radius: 35px 0px 35px 0px; 
-  border: 2px solid #5878ca;}
-
-.ul{
-  display: flex;
-  flex-flow: row nowrap;
-  list-style-type: none;
-  align-items: center;
-  margin-left: 10px;
-  color:aquamarine;
-  font-size: 30px; 
-  background: #60615e;
-}
-
-.ul2{
-  display: flex;
-  flex-flow: row nowrap;
-  list-style-type: none;
-  align-items: center;
-  color:aquamarine;
-  font-size: 30px; 
-  background: #60615e;
-}
-
-.ul3{
-  display: flex;
-  flex-flow: row nowrap;
-  list-style-type: none;
-  align-items: center;
-  margin-left: 50px;
-  color:aquamarine;
-  font-size: 20px; 
-  background: #60615e;
-}
-
-.number{
-  margin: 0.1em;
-}
-
 .div {
   display: inline-flex;
   padding: auto;
@@ -210,39 +60,5 @@ select{
 
 }
 
-.row {
-  display: inline-flex;
-  flex-flow: row;
-  padding: auto;
-}
 
-.column {
-  float: left;
-  width: 33%;
-  padding-right: 5px;
-}
 
-.btn_paginado{
-  cursor: pointer;
-  color:rgba(62, 4, 4, 0.955);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: rgba(245, 239, 247, 0.726); 
-  font-size: 15px;
-  padding: 10px;
-  text-decoration: none;
-  box-shadow: inset 0 0 10px rgb(161, 241, 253), 0 0 10px rgb(145, 248, 255);
-}
-
-.card_btn {
-  color: rgb(7, 7, 7);
-  background-color: rgba(242, 211, 254, 0.726);
-  border: 1px rgb(46, 43, 236) solid;
-  box-shadow: inset 0 0 10px rgb(20, 220, 255), 0 0 10px rgb(20, 239, 255);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Finlandica";
-  margin: 10px;
- 
-  width: 12.5rem;
-  height: 25rem;
-}

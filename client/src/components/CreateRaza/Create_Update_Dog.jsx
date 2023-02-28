@@ -4,6 +4,7 @@ import { temperaments  } from "../../redux/actions/actions_temperament";
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from "react";
 import {Link, useHistory} from "react-router-dom";
+import '../CreateRaza/Form.css'
 
 const initialForm = {
       ID: "",
@@ -15,13 +16,24 @@ const initialForm = {
       temp: [],
     }
 
+const initialMax_min = {
+    height_min: "",
+    height_max: "",
+    weight_min: "",
+    weight_max: "",
+    life_span_min: "",
+    life_span_max: "",
+}
    
 const initialError = {
     ID: "",
     name: "",
-    height: "",
-    weight: "",
-    life_span: "",
+    height_min: "",
+    height_max: "",
+    weight_min: "",
+    weight_max: "",
+    life_span_min: "",
+    life_span_max: "",
     imagen: "",
     temp: [],
     tempName: [],
@@ -34,6 +46,7 @@ const Create_Update_Dog = (props) => {
     const id = props.ID;
 
     const [form, setForm] = useState(initialForm);
+    const [max_min, setMax_min] = useState(initialMax_min)
     const [error, setError] = useState(initialError);
     
     const history = useHistory();
@@ -53,6 +66,7 @@ const Create_Update_Dog = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();//para prevenir o cambiar el evento del formulario
+        console.log(form)
         dispatch(crearDogs(form));
         alert ('Raza creada Satisfactoriamente! ✓')
         handleReset();
@@ -67,42 +81,9 @@ const Create_Update_Dog = (props) => {
         history.push("/home");
     }
 
-    function valida(valor, min, max, caracteristica){
-        let strNum = [];
-        let mgeError = "";
-
-        if (valor.includes("-")) strNum = valor.split("-")
-    
-         else if (valor.includes("_"))  strNum = valor.split("_")
-    
-          else  
-            mgeError = "Debe incluir un guion (-/_) intermedio"
-
-     
-        if (strNum !== [])
-        {
-            let strTotal = strNum[0] + strNum[1];
-            let arrayResult = [];
-            for (let i = 0; i < strTotal.length; i++){
-                arrayResult.push(isNaN(parseInt(strTotal[i],10)));
-            }
-    
-            if (valor.length > 6 || arrayResult.includes(true)){ throw new Error("El formato debe ser valor minimo hasta 2 digitos-valor maximo hasta 3 digitos")}
-             else {
-                if (strNum[0] < min) mgeError = `Coloque un valor igual o superior a ${min} de ${caracteristica}`
-  
-                if (strNum[1] > max) mgeError = `Coloque un valor menor o igual a ${max} de ${caracteristica}`
-    
-             }
-        }
-        return mgeError;
-    }
-
-    const changeHandler = (event) => {
-        const property = event.target.name
-        let value = event.target.value
-
+    function valida(property, value){
         let mgeError = "Falta Dato";
+        console.log(property, value)
 
         if (value.length === 0) setError({[property]: mgeError})
             else setError("");
@@ -110,23 +91,74 @@ const Create_Update_Dog = (props) => {
         if (property === "imagen" && value &&
             !(value.match(
                 /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim
-              ) !== null
-            )
-          ) {
+                ) !== null
+             )
+            ) {
             mgeError = "El link provisto no es una imagen"
             setError ({[property]: mgeError});
-          }
-        if (property === "height") {
-            mgeError = valida(value, 10, 110,"altura");
+        }
+
+        if (property === "height_min") {
+            mgeError = validaMaxMin(parseInt(value,10), 10, 0, "altura");
             setError({[property]: mgeError});
         }
-        if (property === "weight") {
-            mgeError = valida(value, 5, 65,"peso");
+        if (property === "height_max") {
+            mgeError = validaMaxMin(parseInt(value,10), 0, 110,"altura");
             setError({[property]: mgeError});
         }
-        if (property === "life_span") {
-            mgeError = valida(value, 7, 20,"vida");
+    
+        if (property === "weight_min") {
+            mgeError = validaMaxMin(parseInt(value,10), 5, 0, "peso");
             setError({[property]: mgeError});
+        }
+    
+        if (property === "weight_max") {
+            mgeError = validaMaxMin(parseInt(value,10), 0, 65,"peso");
+            setError({[property]: mgeError});
+        }
+
+        if (property === "life_span_min") {
+            mgeError = validaMaxMin(parseInt(value,10), 7, 0, "vida");
+            setError({[property]: mgeError});
+        }
+
+        if (property === "life_span_max") {
+            mgeError = validaMaxMin(parseInt(value,10), 0, 20,"vida");
+            setError({[property]: mgeError});
+        }
+    }
+
+    function validaMaxMin(valor, min, max, caracteristica){
+        let mgeError = "";
+
+        if (min !== 0 && valor < min) mgeError = `Coloque un valor igual o superior a ${min} de ${caracteristica}`
+  
+        if (max !== 0 && valor > max) mgeError = `Coloque un valor menor o igual a ${max} de ${caracteristica}`
+        
+        return mgeError;
+    }
+
+    const changeHandler = (event) => {
+        let property = event.target.name
+        let value = event.target.value
+        console.log("property", property,"value", value)
+        valida(property, value);
+
+        setMax_min({
+            ...max_min,
+            [property]: value
+        })
+        if (property === "height_min" || property === "height_max") {
+            property = "height";
+            value = max_min.height_min+"-"+max_min.height_min;
+        }
+        if (property === "weight_min" || property === "weight_max"){
+            property = "weight";
+            value = max_min.weight_min+"-"+max_min.weight_min;
+        }
+        if (property === "life_span_min" || property === "life_span_max"){
+            property = "life_span";
+            value = max_min.life_span_min+"-"+max_min.life_span_max;
         }
 
         setForm({
@@ -165,6 +197,7 @@ const Create_Update_Dog = (props) => {
 
     return(
         <>
+            <div className="caja">
             <div className="fondo_form">
                 <div className="posicion_form">
                     <form className={error && "error"} >
@@ -191,38 +224,64 @@ const Create_Update_Dog = (props) => {
                             {error.imagen && <p>{error.imagen}</p>}
 
                             <div>
-                                <label className="texto" htmlFor="height" >Altura:</label>
+                                <label className="texto" htmlFor="height_min" >Altura Minima:</label>
                                 <input  
-                                    name = 'height' 
-                                    value ={form.height} 
+                                    name = 'height_min' 
+                                    value ={max_min.height_min} 
                                     onChange={changeHandler}
                                 />
                             </div>
-                            {error.height && <p>{error.height}</p>}
+                            {error.height_min && <p>{error.height_min}</p>}
 
                             <div>
-                                <label className="texto" htmlFor="weight" >Peso:</label>
+                                <label className="texto" htmlFor="height_max" >Altura Maxima:</label>
                                 <input  
-                                        name = 'weight' 
-                                        value ={form.weight} 
+                                    name = 'height_max' 
+                                    value ={max_min.height_max} 
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            {error.height_max && <p>{error.height_max}</p>}
+
+                            <div>
+                                <label className="texto" htmlFor="weight_min" >Peso Minimo:</label>
+                                <input  
+                                        name = 'weight_min' 
+                                        value ={max_min.weight_min} 
                                         onChange={changeHandler}
                                 />
                             </div> 
-                            {error.weight && <p>{error.weight}</p>}
+                            {error.weight_min && <p>{error.weight_min}</p>}
 
                             <div>
-                                <label className="texto" htmlFor="life_span" >Tiempo de vida:</label>
+                                <label className="texto" htmlFor="weight_max" >Peso Maximo:</label>
+                                <input  
+                                        name = 'weight_max' 
+                                        value ={max_min.weight_max} 
+                                        onChange={changeHandler}
+                                />
+                            </div> 
+                            {error.weight_max && <p>{error.weight_max}</p>}
+
+                            <div>
+                                <label className="texto" htmlFor="life_span_min" >Tiempo de vida Minimo:</label>
                                 <input  type={"string"} 
-                                        name = 'life_span' 
-                                        value ={form.life_span} 
+                                        name = 'life_span_min' 
+                                        value ={max_min.life_span_min} 
                                         onChange={changeHandler}
                                 />
                             </div>
-                            {error.life_span && <p>{error.life_span}</p>}
+                            {error.life_span_min && <p>{error.life_span_min}</p>}
+                  
                             <div>
-                                <label className="texto" htmlFor="temperament">Temperamentos: </label>
-                                <label className="texto">{form.tempName + ", "}</label>
+                                <label className="texto" htmlFor="life_span_max" >Tiempo de vida Maximo:</label>
+                                <input  type={"string"} 
+                                        name = 'life_span_max' 
+                                        value ={max_min.life_span_max} 
+                                        onChange={changeHandler}
+                                />
                             </div>
+                            {error.life_span_max && <p>{error.life_span_max}</p>}
                         </div>
 
                         <div className="borde_form">
@@ -232,17 +291,22 @@ const Create_Update_Dog = (props) => {
                                         <option key={temp.name} value={temp.name}>{temp.name} </option>
                                     )}
                             </select>
+                            <div>
+                                <label className="texto" htmlFor="temperament">Temperamentos: </label>
+                                <label className="texto">{form.tempName + ", "}</label>
+                            </div>
                         </div>
                         {error.temp && <p>{error.temp}</p>}
                        
                     </form>
 
                     <Link to="/home">
-                        <button  type= "submit" onClick={submitHandler} hidden={props.ID? true : false} disabled={!form.name || !form.imagen || !form.height || !form.weight || form.temp.length === 0 || error}>CREAR</button>
+                        <button  type= "submit" onClick={submitHandler} hidden={props.ID? true : false} disabled={!form.name || !form.imagen || !max_min.height_min || !max_min.height_max || form.temp.length === 0 || error} >CREAR</button>
                         <button  type="submit" onClick={submitHandlerActual} hidden={props.ID? false : true} disabled={!form.name && !form.imagen && !form.height && !form.weight && error}>Actualizar</button>
                     </Link> 
 
                 </div>
+            </div>
             </div>
         </>
     )
@@ -251,4 +315,4 @@ const Create_Update_Dog = (props) => {
 export default Create_Update_Dog;
 
 
-
+// || !max_min.weight.min || !max_min.weight_max || !max_min.life_span_min || !max_min.life_span_max || 

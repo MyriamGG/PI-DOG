@@ -1,0 +1,14 @@
+.cajita{ 
+    align-items:last baseline;
+    color: #ffffff; 
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden; 
+
+    border-radius: 35px 0px 35px 0px; 
+    -moz-border-radius: 35px 0px 35px 0px; 
+    -webkit-border-radius: 35px 0px 35px 0px; 
+    border: 2px solid #5878ca;
+    background: #889ccf; 
+    width: 15vw;
+}

@@ -54,7 +54,7 @@ async function objeto(raza, origen) {
       origen === "DB" ? raza.imagen : imageUrl ? imageUrl.image : "Sin imagen",
     temperament:
       origen === "DB"
-        ? raza.temperaments?.map((temp) => temp.name).join(",")
+        ? raza.temperaments?.map((temp) => temp.name).join(", ")
         : raza.temperament,
   };
 

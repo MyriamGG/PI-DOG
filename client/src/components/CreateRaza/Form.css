@@ -1,0 +1,33 @@
+.fondo_form{
+    background-color: rgb(166, 170, 197);
+  }
+  
+  .posicion_form{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .borde_form{
+    border: 5px solid #11151e;
+  }
+  
+  .titulo {
+    text-align: center;
+    color:rgb(228, 228, 55);
+    background-color: #6a890d;
+  }
+  
+  .texto {
+    color:rgb(26, 3, 72);
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .caja {
+    border: 2px solid #5878ca;
+    background: #889ccf; 
+    width:auto;
+    height: 550px;
+  }

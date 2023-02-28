@@ -29,7 +29,7 @@ const CREATE_RAZA = async (req, res) => {
     try{
         const {name, height, weight, life_span, imagen, temp} = req.body;
         if (!name || !height || !weight || !life_span || !imagen) throw new Error("Faltan Datos");
-        
+        console.log(height, weight, life_span)
         if (!(imagen.match( /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim) !== null )) {
                 throw new Error("El link provisto no es una imagen");
             }

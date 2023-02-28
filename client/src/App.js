@@ -8,16 +8,14 @@ import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   let ruta = useLocation();
-  console.log(ruta);
+
   return (
     <>
       <div className="margenes">
-        {ruta.pathname !== "/" && <NavBar />}
+        {ruta.pathname == "/home" && <NavBar />}
         <Route exact path="/" component={LandingPage} />
 
         <Route exact path="/home" component={Home} />
-
-        {/*     <Route path="/dog" component={Card_dog} /> */}
 
         <Route exact path="/dogDetail/:id" component={Detail_dog} />
 

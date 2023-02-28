@@ -1,4 +1,5 @@
 import React from "react";
+import './Paginado.css';
 
 const Paginadonumerico = (props) => {
 

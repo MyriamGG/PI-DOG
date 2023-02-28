@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Card_dog.css';
+
 const Card_dog = (props) => {
 
     return (
@@ -12,7 +14,7 @@ const Card_dog = (props) => {
 
                         <Link to={`/dogDetail/${props.id}`}>
                             <p className="texto_dog">{props.name}</p>
-                            <img src={props.imagen} alt={props.name} width='200px' height='150px'/> 
+                            <img src= {props.imagen}  width='200px' height='150px'/> 
                         </Link> 
 
                         

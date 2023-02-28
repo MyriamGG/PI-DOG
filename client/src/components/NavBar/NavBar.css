@@ -11,29 +11,72 @@
 }
 
 .navContent{
-    justify-content: space-around ;
-
+    /* justify-content: space-around ; */
     display: inline-flex;
     flex-direction: column;
-    float: right;
+    /* float: right; */
  
    
 }
 
 
-.navLink{
+/* .navLink{
     color: white;
     text-decoration: none;
     font-size: 1rem ;
-}
+    align-items:last baseline;
 
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    color: #ffffff; 
+    font-size: 12px; 
+    text-align: center; 
+    background: #889ccf; 
+    overflow: hidden; 
+    padding: 10px; 
+    border-radius: 35px 0px 35px 0px; 
+    -moz-border-radius: 35px 0px 35px 0px; 
+    -webkit-border-radius: 35px 0px 35px 0px; 
+    border: 2px solid #5878ca;
+} */
+
+.navLink {
+    align-items:last baseline;
+    color: #ffffff; 
+    font-size: 0,5em;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden; 
+
+    border-radius: 35px 0px 35px 0px; 
+    -moz-border-radius: 35px 0px 35px 0px; 
+    -webkit-border-radius: 35px 0px 35px 0px; 
+    border: 2px solid #5878ca;
+    background: #889ccf; 
+    width: 10vw;
+  }
 
 .conteinerMerch{
     color: #ffffff;
     text-align: center;
     margin-left: 3%;
     width: 25%;
+    display: inline-flex;
+    flex-direction: column;
 }
+
+/* .caja{
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    color: #ffffff; 
+    font-size: 12px; 
+    text-align: center; 
+    background: #889ccf; 
+    margin-left: 1000px; 
+    overflow: hidden; 
+    padding: 10px; 
+    border-radius: 35px 0px 35px 0px; 
+    -moz-border-radius: 35px 0px 35px 0px; 
+    -webkit-border-radius: 35px 0px 35px 0px; 
+    border: 2px solid #5878ca; 
+}*/
 
 .dogs{
     color: #ffffff;
@@ -51,5 +94,4 @@
 
 .navSearchBar{
     display: flex;
-    margin-right: 100%;
 }

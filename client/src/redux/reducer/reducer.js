@@ -60,13 +60,15 @@ export default function rootReducer(state = initialState, action) {
               return el;
             }
           }
-          console.log(tempArr)
       });
-      if (optionfiltered.length === 0 && action.payload !== "All")
+
+      if (optionfiltered.length === 0 && action.payload !== "All"){
         console.log(alert("no existe raza con ese filtro ❌"));
+        window.location.reload();
+      }
       const optionfiltered2 =
         action.payload === "All" ? allDogs : optionfiltered;
-      console.log(optionfiltered2)
+     
       return {
         ...state,
         dogs: optionfiltered2,
@@ -77,8 +79,10 @@ export default function rootReducer(state = initialState, action) {
         action.payload === "created"
           ? allDogsCreated.filter((el) => typeof el.ID !== "number")
           : allDogsCreated.filter((el) => typeof el.ID === "number");
-      if (createdfiltered.length === 0)
+    
+      if (createdfiltered.length === 0){
         console.log(alert("no existe perrito con ese filtro ❌"));
+        window.location.reload()}
       const createdfiltered2 =
         action.payload === "All" ? state.copiaDogs : createdfiltered;
 

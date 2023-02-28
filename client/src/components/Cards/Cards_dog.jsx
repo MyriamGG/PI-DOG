@@ -3,13 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import { obtenerDogs, filterDogsbyOptions, filterDogsbyCreation, order, cleanDog } from '../../redux/actions/actions_dogs';
 import { temperaments } from '../../redux/actions/actions_temperament';
 import Paginadonumerico from '../Paginado/Paginadonumerico';
-
-
+import './Cards_dog.css'
 import Card_dog from '../Card/Card_dog';
 
 function Cards_dog() {
- 
-    // const [form, setForm] = useState({name:" "});
+
+    const [search, setSearch] = useState({name:" "})
     const [orden, setOrden] = useState('');
 
     const ITEMS_PER_PAGE = 8;
@@ -28,7 +27,6 @@ function Cards_dog() {
     },[dispatch]);
 
     let allDogs = useSelector(state => state.dogs);
-    console.log(allDogs)
     const temp = useSelector(state => state.temp);
     
     const indexOfLastCharacters = currentPage * ITEMS_PER_PAGE;
@@ -39,7 +37,17 @@ function Cards_dog() {
         setcurrentPage(numberPage);
     }
 
+    function handlerSearch(event){
 
+        const property = event.target.name
+       let value = event.target.value
+       setSearch({
+           ...search,
+           [property]: value
+       })
+       dispatch(obtenerDogs(search.name))
+       setcurrentPage(1);
+   }
 
 const handleFilterOptions = (event) =>{
     dispatch(filterDogsbyOptions(event.target.value));
@@ -55,6 +63,7 @@ const handleAlfa_weight = (event) => {
     dispatch(order(event.target.value))
     setOrden(`ordenado ${event.target.value}`)
 }
+
 const handleClick = (event) => {
     window.location.reload();
 }
@@ -62,11 +71,19 @@ const handleClick = (event) => {
 return(
     <>
         <div className='fondo_color'>
+            <br/>
 
-    
-            <button className="cajita" onClick={handleClick}>Recargar Pagina</button>
-   
-                        
+            
+            <form>
+                <label className="label">Escriba la raza </label>
+                <input  type={"text"} 
+                        name = 'name' 
+                        value ={search.name} 
+                        placeholder= "name..."
+                        onChange={handlerSearch}
+                        />
+            </form>
+            
             <div>
                 <select onChange={e => handleFiltercreations(e)}>
                     <option>Elegir Opcion de Creacion</option>

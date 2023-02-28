@@ -1,0 +1,48 @@
+.fondo_detail{
+    background-color:rgb(248, 237, 245);
+  }
+  
+.titulo {
+    text-align: center;
+    color:rgb(228, 228, 55);
+    background-color: #6a890d;
+  }
+
+  .linkDog {
+    margin-left: 550px;
+    color:rgb(244, 209, 192);
+    background-color: #485f05;
+    width: 5em;
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .boton_detail{
+    color:rgb(55, 21, 123);
+    font-size: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .imagen_detail{
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+  }
+  
+  .texto_detail{
+    color:#5878ca;
+    font-size: 1.05em;
+    font-family: fantasy;
+    margin-left: 50px;
+  }
+   
+  .margen_detail{
+    margin-left: 200px;
+    margin-right: 200px;
+    font-family: italic;
+    font-size: 1.05em;
+    color:#39044e;
+    border: #7e7d7d solid;
+  }
+
+
