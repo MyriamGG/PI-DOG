@@ -64,7 +64,7 @@ const Create_Update_Dog = (props) => {
         setError(initialError)   
     }
 
-    const submitHandler = (event) => {
+    const ActiveButton = (event) => {
         event.preventDefault();//para prevenir o cambiar el evento del formulario
         console.log(form)
         dispatch(crearDogs(form));
@@ -73,7 +73,7 @@ const Create_Update_Dog = (props) => {
         history.push("/home");
     }
 
-    const submitHandlerActual = (event) => {
+    const ActiveButtonPut = (event) => {
         event.preventDefault();//para prevenir o cambiar el evento del formulario
         dispatch(putDogs(form, id));
         alert ('Raza actualizada satisfactoriamente! ✓')
@@ -301,8 +301,8 @@ const Create_Update_Dog = (props) => {
                     </form>
 
                     <Link to="/home">
-                        <button  type= "submit" onClick={submitHandler} hidden={props.ID? true : false} disabled={!form.name || !form.imagen || !max_min.height_min || !max_min.height_max || form.temp.length === 0 || error} >CREAR</button>
-                        <button  type="submit" onClick={submitHandlerActual} hidden={props.ID? false : true} disabled={!form.name && !form.imagen && !form.height && !form.weight && error}>Actualizar</button>
+                        <button  onClick={ActiveButton} hidden={props.ID? true : false} disabled={!form.name || !form.imagen || !max_min.height_min || !max_min.height_max || form.temp.length === 0 || error} >CREAR</button>
+                        <button  onClick={ActiveButtonPut} hidden={props.ID? false : true} disabled={!form.name && !form.imagen && !form.height && !form.weight && error}>Actualizar</button>
                     </Link> 
 
                 </div>
