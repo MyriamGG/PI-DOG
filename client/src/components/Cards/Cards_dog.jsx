@@ -48,6 +48,9 @@ function Cards_dog() {
        dispatch(obtenerDogs(search.name))
        setcurrentPage(1);
    }
+const clear = () => {
+    setSearch({name:" "});
+}
 
 const handleFilterOptions = (event) =>{
     dispatch(filterDogsbyOptions(event.target.value));
@@ -82,6 +85,7 @@ return(
                         placeholder= "name..."
                         onChange={handlerSearch}
                         />
+                <button onclick={clear}>Limpiar</button>
             </form>
             
             <div>

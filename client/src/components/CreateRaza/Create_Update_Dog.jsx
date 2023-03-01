@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { crearDogs, putDogs  } from "../../redux/actions/actions_dogs";
 import { temperaments  } from "../../redux/actions/actions_temperament";
+import { obtenerDogs } from "../../redux/actions/actions_dogs";
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from "react";
 import {Link, useHistory} from "react-router-dom";
@@ -54,9 +55,11 @@ const Create_Update_Dog = (props) => {
 
     useEffect(() =>{
         dispatch(temperaments());
+        dispatch(obtenerDogs());
     },[dispatch]);
 
     const temperament = useSelector(state => state.temp);
+    const dogInfo = useSelector(state  => state.dogs);
 
     const handleReset = (event) => {
         setForm(initialForm)
@@ -85,6 +88,14 @@ const Create_Update_Dog = (props) => {
   
         if (value.length === 0) setError({[property]: mgeError})
             else setError("");
+
+        const buscoDog = dogInfo.find(dog => dog.name === value);
+
+        if (property === 'name') 
+            if (buscoDog) {
+                mgeError = "Coloque un nombre diferente"
+                setError({[property]: mgeError});
+            }
         if (property === 'temp') value = value.split(',');
         if (property === "imagen" && value &&
             !(value.match(
@@ -151,6 +162,7 @@ const Create_Update_Dog = (props) => {
     const changeHandler = (event) => {
         let property = event.target.name
         let value = event.target.value
+
         valida(property, value);
 
         setMax_min({
