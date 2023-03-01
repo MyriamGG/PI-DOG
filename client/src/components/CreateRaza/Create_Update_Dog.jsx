@@ -97,42 +97,50 @@ const Create_Update_Dog = (props) => {
         }
 
         if (property === "height_min") {
-            mgeError = validaMaxMin(parseInt(value,10), 10, 0, "altura");
+            mgeError = validaMaxMin(property, value, 10, max_min.height_max, "altura");
             setError({[property]: mgeError});
         }
         if (property === "height_max") {
-            mgeError = validaMaxMin(parseInt(value,10), max_min.height_min, 110,"altura");
+            mgeError = validaMaxMin(property, value, max_min.height_min, 110,"altura");
             setError({[property]: mgeError});
         }
     
         if (property === "weight_min") {
-            mgeError = validaMaxMin(parseInt(value,10), 5, 0, "peso");
+            mgeError = validaMaxMin(property, value, 5, max_min.weight_max, "peso");
             setError({[property]: mgeError});
         }
     
         if (property === "weight_max") {
-            mgeError = validaMaxMin(parseInt(value,10), max_min.weight_min, 65,"peso");
+            mgeError = validaMaxMin(property, value, max_min.weight_min, 65,"peso");
             setError({[property]: mgeError});
         }
 
         if (property === "life_span_min") {
-            mgeError = validaMaxMin(parseInt(value,10), 7, 0, "vida");
+            mgeError = validaMaxMin(property, value, 7, max_min.life_span_max, "vida");
             setError({[property]: mgeError});
         }
 
         if (property === "life_span_max") {
-            mgeError = validaMaxMin(parseInt(value,10), max_min.life_span_min, 20,"vida");
+            mgeError = validaMaxMin(property, value, max_min.life_span_min, 20,"vida");
             setError({[property]: mgeError});
         }
     }
 
-    function validaMaxMin(valor, min, max, caracteristica){
-        let mgeError = "";
+    function validaMaxMin(property, valor, min, max, caracteristica){
 
-        if (max === 0 && valor < min) mgeError = `Coloque un valor igual o superior a ${min} de ${caracteristica}`
-        if (max !== 0 && valor <= min) mgeError = `Coloque un valor superior a ${min}`;
-        if (max !== 0 && valor > max) mgeError = `Coloque un valor menor o igual a ${max} de ${caracteristica}`
+        let mgeError = "";
+        let isNumeric = true;
+        for (let i = 0; i < valor.length; i++){
+            if (!valor[i].match("[0-9]+")) isNumeric = false;
+        }
         
+        if (isNumeric){
+            valor = parseInt(valor,10)
+            if (property.slice(-3) === "min" && valor < min) mgeError = `Coloque un valor igual o superior a ${min} de ${caracteristica}`
+            if (property.slice(-3) === "min" && max && valor >= max) mgeError = `Coloque un valor menor a ${max}`
+            if (property.slice(-3) === "max" && valor > max) mgeError = `Coloque un valor menor o igual a ${max} de ${caracteristica}`
+            if (property.slice(-3) === "max" && min && valor <= min) mgeError = `Coloque un valor mayor a ${min}`
+        } else mgeError = "Debe colocar solo numeros"
         return mgeError;
     }
 
