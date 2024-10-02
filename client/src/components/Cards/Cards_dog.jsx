@@ -1,4 +1,4 @@
-  import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { obtenerDogs, filterDogsbyOptions, filterDogsbyCreation, order, cleanDog } from '../../redux/actions/actions_dogs';
 import { temperaments } from '../../redux/actions/actions_temperament';
